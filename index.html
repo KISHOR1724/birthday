@@ -887,6 +887,11 @@ body.lit .lamp-glow{
   margin-bottom:10px;
   font-weight:600;
 }
+.dob-photo-wrap{
+  margin:0 auto 18px;
+  display:flex;
+  justify-content:center;
+}
 .dob-photo{
   display:block;
   width:min(260px,100%);
@@ -1083,6 +1088,10 @@ footer{
 <!-- SCREEN 2: PHYSICAL LIGHT SWITCH & LAMP -->
 <section class="screen" id="s2">
   <div class="panel">
+    <!-- The photo appears here the moment the DOB is entered, and only on this screen -->
+    <div class="dob-photo-wrap" id="dobPhotoWrap" style="display:none;">
+      <img class="dob-photo" src="assets/dob-reveal.jpg" alt="A birthday photo for Deekshith">
+    </div>
     <div class="eyebrow">Step 02 · The Awakening</div>
     <h1 class="title">It's a little<br><span class="script">too dark here…</span></h1>
     <p class="description">Touch the lamp or flip the switch to illuminate your universe with golden light.</p>
@@ -1105,7 +1114,6 @@ footer{
 
     <!-- Song + lyrics appear here as soon as the correct birth date is entered -->
     <div class="dob-lyrics" id="dobLyrics" style="display:none;">
-      <img class="dob-photo" src="assets/dob-reveal.jpg" alt="A birthday photo for Deekshith">
       <div class="dob-lyrics-heading">♫ Pirai Thedum Iravile · playing softly, just for you</div>
       <div class="lyrics-tamil" id="dobLyricTamil"></div>
       <div class="lyrics-trans" id="dobLyricTrans"></div>
@@ -1286,17 +1294,10 @@ footer{
         <span class="music-icon">♫</span>
         <div>
           <div class="song-title">Pirai Thedum Iravile (பிறை தேடும் இரவிலே)</div>
-          <div class="song-subtitle">Mayakkam Enna · played once, softly, on your birthday ❤️</div>
+          <div class="song-subtitle">Mayakkam Enna · played once, softly, when you entered your birthday ❤️</div>
         </div>
       </div>
-      
-      <div class="lyrics-content">
-        <div class="lyrics-badge">Synchronized Song Lyrics</div>
-        <div class="lyrics-tamil" id="lyricTamil">"பிறை தேடும் இரவிலே உயிரே... எதை தேடி அலைகிறாய்..."</div>
-        <div class="lyrics-trans" id="lyricTrans">"Pirai thedum iravile uyire... ethai thedi alaigiraai..."</div>
-        <div class="lyrics-meaning" id="lyricMeaning">"In this moon-searching night, my soul... what are you wandering in search of?"</div>
-      </div>
-      
+
       <div class="lyrics-player-controls">
         <button class="btn" id="piraiBtn" onclick="togglePiraiMusic()">♫ Play song softly</button>
         <button class="btn secondary" id="musicBtn" onclick="toggleMusicBox()">♫ Music Box Chime</button>
@@ -1851,25 +1852,23 @@ let lyricsIdx = 0;
 let lyricsTimer = null;
 
 function cycleLyrics() {
+  // Lyrics live only on the DOB screen — they are removed from later screens.
+  const tEl = document.getElementById("dobLyricTamil");
+  const rEl = document.getElementById("dobLyricTrans");
+  const mEl = document.getElementById("dobLyricMeaning");
+  if (!tEl || !rEl || !mEl) return;
   const line = PIRAI_LYRICS[lyricsIdx % PIRAI_LYRICS.length];
-  [["lyricTamil","lyricTrans","lyricMeaning"],
-   ["dobLyricTamil","dobLyricTrans","dobLyricMeaning"]].forEach(pair => {
-    const tEl = document.getElementById(pair[0]);
-    const rEl = document.getElementById(pair[1]);
-    const mEl = document.getElementById(pair[2]);
-    if (!tEl || !rEl || !mEl) return;
-    tEl.style.opacity = "0";
-    rEl.style.opacity = "0";
-    mEl.style.opacity = "0";
-    setTimeout(() => {
-      tEl.textContent = line.tamil;
-      rEl.textContent = line.trans;
-      mEl.textContent = line.meaning;
-      tEl.style.opacity = "1";
-      rEl.style.opacity = "1";
-      mEl.style.opacity = "1";
-    }, 350);
-  });
+  tEl.style.opacity = "0";
+  rEl.style.opacity = "0";
+  mEl.style.opacity = "0";
+  setTimeout(() => {
+    tEl.textContent = line.tamil;
+    rEl.textContent = line.trans;
+    mEl.textContent = line.meaning;
+    tEl.style.opacity = "1";
+    rEl.style.opacity = "1";
+    mEl.style.opacity = "1";
+  }, 350);
   lyricsIdx++;
 }
 
@@ -1879,12 +1878,23 @@ function startLyricsCycling() {
   lyricsTimer = setInterval(cycleLyrics, 5000);
 }
 
+function stopLyricsCycling() {
+  clearInterval(lyricsTimer);
+  lyricsTimer = null;
+}
+
 /* SCREEN NAVIGATION */
 function show(id) {
   document.querySelectorAll(".screen").forEach(el => el.classList.remove("active"));
   const target = document.getElementById(id);
   target.classList.add("active");
   window.scrollTo({top: 0, behavior: "smooth"});
+  if (id !== "s2") {
+    // The DOB photo and its lyrics belong to this screen only.
+    stopLyricsCycling();
+    const dobPhotoWrap = document.getElementById("dobPhotoWrap");
+    if (dobPhotoWrap) dobPhotoWrap.style.display = "none";
+  }
   if (id === "s3") {
     setTimeout(shootArrow, 450);
   }
@@ -1911,9 +1921,6 @@ function show(id) {
     const micBtn = document.getElementById("micBtn");
     if (micBtn) micBtn.textContent = "🎤 Blow into microphone";
   }
-  if (id === "s6") {
-    if (!lyricsTimer) startLyricsCycling();
-  }
 }
 
 /* UNLOCK DATE CHECK */
@@ -1931,6 +1938,8 @@ function unlock() {
   }
   e.textContent = "";
   playChime(987.77, 0.6);
+  const dobPhotoWrap = document.getElementById("dobPhotoWrap");
+  if (dobPhotoWrap) dobPhotoWrap.style.display = "flex";
   const dobLyrics = document.getElementById("dobLyrics");
   if (dobLyrics) dobLyrics.style.display = "block";
   setTimeout(() => {
