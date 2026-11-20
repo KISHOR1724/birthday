@@ -1204,15 +1204,15 @@ footer{
     
     <div class="gallery" id="gallery">
       <div class="polaroid">
-        <div class="polaroid-img-wrap">🌟 Unforgettable laughs</div>
+        <div class="polaroid-img-wrap"><img src="memory/memory-1.jpg" alt="A cherished memory" loading="lazy"></div>
         <div class="polaroid-caption">A bright moment</div>
       </div>
       <div class="polaroid">
-        <div class="polaroid-img-wrap">🎈 Another great year</div>
+        <div class="polaroid-img-wrap"><img src="memory/memory-2.jpg" alt="Another cherished memory" loading="lazy"></div>
         <div class="polaroid-caption">Milestones achieved</div>
       </div>
       <div class="polaroid">
-        <div class="polaroid-img-wrap">✨ Endless dreams</div>
+        <div class="polaroid-img-wrap"><img src="memory/memory-3.jpg" alt="One more cherished memory" loading="lazy"></div>
         <div class="polaroid-caption">To the future ahead</div>
       </div>
     </div>
@@ -2231,12 +2231,15 @@ requestAnimationFrame(updateConfetti);
 /* PHOTO GALLERY UPLOAD */
 document.getElementById("photos").addEventListener("change", e => {
   const g = document.getElementById("gallery");
-  g.innerHTML = "";
+  // Keep the photos in the memory folder; replace only previously added uploads.
+  g.querySelectorAll(".polaroid[data-uploaded]").forEach(card => card.remove());
   const files = [...e.target.files].slice(0, 12);
+  const start = g.querySelectorAll(".polaroid").length;
   files.forEach((f, idx) => {
     const url = URL.createObjectURL(f);
     const card = document.createElement("div");
     card.className = "polaroid";
+    card.dataset.uploaded = "true";
     const imgWrap = document.createElement("div");
     imgWrap.className = "polaroid-img-wrap";
     const img = document.createElement("img");
@@ -2245,7 +2248,7 @@ document.getElementById("photos").addEventListener("change", e => {
     imgWrap.appendChild(img);
     const caption = document.createElement("div");
     caption.className = "polaroid-caption";
-    caption.textContent = `Memory #${idx + 1}`;
+    caption.textContent = `Memory #${start + idx + 1}`;
     card.appendChild(imgWrap);
     card.appendChild(caption);
     g.appendChild(card);
