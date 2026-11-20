@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080711">
+<title>A Little Birthday Universe for Kishor</title>
+<style>
+:root{--gold:#f7d78b;--pink:#ff8eae;--ink:#080711;--muted:#c9c2d5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:#fff;font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 20%,#6e3c7833,transparent 30%),radial-gradient(circle at 85% 75%,#bd7c4c22,transparent 28%),linear-gradient(135deg,#080711,#151022 55%,#090812);z-index:-2}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3s infinite ease-in-out alternate}@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
+.screen{min-height:100svh;display:none;place-items:center;padding:32px 18px;position:relative}.screen.active{display:grid;animation:fade .9s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel{width:min(760px,100%);text-align:center;padding:clamp(24px,5vw,52px);border:1px solid #f7d78b44;border-radius:28px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);box-shadow:0 20px 90px #0008;backdrop-filter:blur(12px)}
+.eyebrow{letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font:11px Arial,sans-serif}.title{font-size:clamp(2.5rem,8vw,5.7rem);line-height:.98;margin:18px 0;color:#fff;text-shadow:0 0 35px #ffb8d355}.script{font-style:italic;color:var(--gold)}p{color:var(--muted);font-size:clamp(1rem,2.5vw,1.2rem);line-height:1.7}
+input[type=date],input[type=text]{width:min(330px,100%);padding:15px 17px;border:1px solid #f7d78b77;border-radius:14px;background:#100d1c;color:white;font:16px Arial,sans-serif;margin:12px 0}
+button,.filelabel{border:1px solid #f7d78b99;background:linear-gradient(110deg,#f6d58a,#c68a57);color:#241326;padding:14px 24px;border-radius:999px;font-weight:bold;letter-spacing:.04em;cursor:pointer;margin:8px;font: bold 13px Arial,sans-serif;transition:.25s}
+button:hover,.filelabel:hover{transform:translateY(-2px);box-shadow:0 8px 30px #e5b66a44}.secondary{background:transparent;color:var(--gold)}.hint{font:12px Arial,sans-serif;color:#aaa2b7;margin-top:15px}.error{color:#ff9aa8;min-height:22px;font:13px Arial,sans-serif}
+.switch-wrap{margin:35px auto 20px;width:120px;height:160px;display:grid;place-items:center}.switch{width:74px;height:112px;border-radius:35px;border:2px solid #b9a4a7;background:linear-gradient(90deg,#292433,#625465);box-shadow:inset 0 0 18px #0009,0 0 30px #000;cursor:pointer;position:relative}.switch:after{content:"";position:absolute;width:46px;height:46px;border-radius:50%;background:linear-gradient(145deg,#f7e4ba,#9b8b87);left:12px;top:10px;box-shadow:0 3px 8px #0008;transition:.35s}.switch.on:after{top:53px;background:#ffe7a0;box-shadow:0 0 28px #ffe7a0}
+.lit{background:radial-gradient(ellipse at center,#6d4d6d 0%,#261b36 45%,#080711 100%)}
+.lights{position:fixed;inset:0;pointer-events:none;background:#ffe8b5;opacity:0;mix-blend-mode:screen;transition:opacity 1.5s}.lit .lights{opacity:.22}
+.orb{font-size:clamp(4rem,15vw,9rem);filter:drop-shadow(0 0 28px #ffcf78);margin:20px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;margin:24px 0}.photo{aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid #f7d78b66;background:linear-gradient(135deg,#34243e,#171323);display:grid;place-items:center;color:#b9a9c4;font:12px Arial,sans-serif}.photo img{width:100%;height:100%;object-fit:cover}.uploadrow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}.filelabel input{display:none}
+.cake-area{position:relative;width:min(360px,90vw);height:300px;margin:20px auto 10px;display:grid;place-items:center;cursor:pointer;user-select:none;touch-action:manipulation}.cake{position:relative;width:260px;height:190px;filter:drop-shadow(0 15px 22px #0009);transition:transform .4s}.cake-base{position:absolute;bottom:12px;left:8px;width:244px;height:110px;border-radius:18px 18px 28px 28px;background:linear-gradient(90deg,#9c426b,#f2a1b2 48%,#9d456e);border-bottom:12px solid #773553}.cake-top{position:absolute;bottom:105px;left:8px;width:244px;height:55px;border-radius:50%;background:radial-gradient(ellipse,#ffe2d2 0 55%,#f6a9b8 56%);border:5px solid #f8c3c6}.icing{position:absolute;bottom:77px;left:8px;width:244px;height:44px;border-radius:50%;background:#ffe0d5}.drip{position:absolute;bottom:58px;width:18px;height:35px;border-radius:0 0 12px 12px;background:#ffe0d5}.d1{left:48px}.d2{left:115px;height:25px}.d3{left:190px;height:42px}.candle{position:absolute;bottom:150px;left:120px;width:17px;height:55px;background:repeating-linear-gradient(45deg,#fff 0 7px,#e89ab3 7px 14px);border-radius:5px}.flame{position:absolute;bottom:204px;left:119px;width:19px;height:29px;background:radial-gradient(ellipse at 50% 70%,#fff7b0 0 20%,#ffc34d 45%,#ff6c35 70%);border-radius:50% 50% 45% 45%;filter:drop-shadow(0 0 13px #ffba45);animation:flicker .6s infinite alternate}@keyframes flicker{to{transform:rotate(7deg) scale(.88)}}
+.cake.cut .cake{transform:rotate(-3deg)}.cake.cut .cake-top{clip-path:polygon(0 0,100% 0,100% 100%,65% 100%,52% 40%,38% 100%,0 100%)}.cake.cut .cake-base{clip-path:polygon(0 0,100% 0,100% 100%,65% 100%,52% 40%,38% 100%,0 100%)}.cake.cut:after{content:"";position:absolute;width:75px;height:65px;right:13px;bottom:35px;background:linear-gradient(135deg,#ffd7d0,#d87998);clip-path:polygon(0 0,100% 20%,70% 100%,15% 80%);transform:translate(48px,-4px) rotate(12deg);filter:drop-shadow(0 0 12px #ffb5c5);animation:slice .8s ease forwards}@keyframes slice{to{transform:translate(66px,-12px) rotate(20deg)}}
+.knife{font-size:45px;position:absolute;top:24px;right:34px;transform:rotate(-35deg);opacity:0;pointer-events:none}.cake.cut .knife{animation:knife .7s ease}@keyframes knife{0%{opacity:0;transform:translate(-40px,-30px) rotate(-70deg)}45%{opacity:1;transform:translate(0,50px) rotate(5deg)}100%{opacity:0;transform:translate(40px,100px) rotate(35deg)}}
+.message{font-size:clamp(1.5rem,5vw,2.6rem);line-height:1.35;color:#fff}.signature{color:var(--gold);font-style:italic;font-size:1.4rem;margin-top:25px}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}.piece{position:absolute;top:-20px;width:8px;height:13px;background:var(--gold);animation:fall 3s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(780deg);opacity:0}}
+footer{font:11px Arial,sans-serif;color:#82798d;margin-top:28px}.small{font-size:.9rem}
+@media(max-width:480px){.panel{border-radius:20px}.cake-area{transform:scale(.9);margin-top:0}.title{font-size:2.8rem}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="lights"></div><div id="confetti"></div>
+<section class="screen active" id="s1"><div class="panel">
+<div class="eyebrow">A little universe, made just for you</div>
+<h1 class="title">Hello,<br><span class="script" id="friendName">Kishor</span></h1>
+<p>Before this little world opens, there's one tiny question…<br><span class="script">When is your birthday?</span></p>
+<input id="birthInput" type="date" aria-label="Enter your birthday"><br>
+<button onclick="unlock()">Unlock your surprise ✨</button><div class="error" id="dateError"></div>
+<div class="hint">A date only you know opens the door.</div><footer>MADE WITH A LITTLE EXTRA LOVE</footer>
+</div></section>
+<section class="screen" id="s2"><div class="panel">
+<div class="eyebrow">Step 02 · Let there be light</div><h1 class="title">It's a little<br><span class="script">too dark here…</span></h1>
+<p>Will you turn on the lights?</p><div class="switch-wrap"><div class="switch" id="switch" onclick="turnOnLights()" role="button" aria-label="Turn on the lights" tabindex="0"></div></div>
+<p class="small" id="switchText">Touch the switch to brighten your birthday world.</p>
+</div></section>
+<section class="screen" id="s3"><div class="panel">
+<div class="eyebrow">Step 03 · A little magic</div><div class="orb">✨</div><h1 class="title">Look at that<br><span class="script">glow!</span></h1>
+<p>Some people make ordinary days feel special. Today, all the sparkle is for you.</p>
+<button onclick="show('s4')">Open our memories →</button>
+</div></section>
+<section class="screen" id="s4"><div class="panel">
+<div class="eyebrow">Step 04 · Little moments, big memories</div><h1 class="title">The moments<br><span class="script">that matter</span></h1>
+<p>Add your favourite photos below. They'll appear here as a little memory wall.</p>
+<div class="uploadrow"><label class="filelabel">＋ Add photos<input id="photos" type="file" accept="image/*" multiple></label></div>
+<div class="gallery" id="gallery"><div class="photo">Your first memory goes here</div><div class="photo">Add another favourite</div><div class="photo">One more lovely moment</div></div>
+<button onclick="show('s5')">There's a cake waiting →</button>
+</div></section>
+<section class="screen" id="s5"><div class="panel">
+<div class="eyebrow">Step 05 · The birthday moment</div><h1 class="title">Let's cut<br><span class="script">the cake!</span></h1>
+<p>Make a wish, take a breath, and tap the cake to cut your first slice.</p>
+<div class="cake-area" id="cakeArea" onclick="cutCake()"><div class="knife">🔪</div><div class="cake"><div class="cake-base"></div><div class="icing"></div><div class="drip d1"></div><div class="drip d2"></div><div class="drip d3"></div><div class="cake-top"></div><div class="candle"></div><div class="flame"></div></div></div>
+<p class="small" id="cakeHint">Tap the cake when you're ready 🎂</p>
+<button id="cakeNext" style="display:none" onclick="show('s6')">Read your birthday letter →</button>
+</div></section>
+<section class="screen" id="s6"><div class="panel">
+<div class="eyebrow">Step 06 · From my heart to yours</div><div class="orb">🎉</div>
+<h1 class="title">Happy Birthday,<br><span class="script" id="finalName">Kishor!</span></h1>
+<div class="message" id="finalMessage">May your days be full of laughter, your heart full of peace, and your dreams closer with every new year.</div>
+<div class="signature">With love, always ❤️</div>
+<div class="uploadrow"><label class="filelabel">♫ Add your birthday music<input id="music" type="file" accept="audio/*"></label></div>
+<button class="secondary" onclick="playMusic()">Play / pause music ♫</button>
+<button onclick="celebrate()">More confetti!</button>
+<footer>You can change this message and add your own photos and music before sharing.</footer>
+</div></section>
+<audio id="audio" loop></audio>
+<script>
+const CONFIG={friendName:"Kishor",birthday:"2026-11-21"};
+document.getElementById("friendName").textContent=CONFIG.friendName;
+document.getElementById("finalName").textContent=CONFIG.friendName+"!";
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+function unlock(){const v=document.getElementById("birthInput").value;const e=document.getElementById("dateError");if(!v){e.textContent="Choose your birthday date first.";return;}if(v!==CONFIG.birthday){e.textContent="Hmm… that's not the secret date. Try again ❤️";return;}e.textContent="";show("s2");}
+function turnOnLights(){document.body.classList.add("lit");document.getElementById("switch").classList.add("on");document.getElementById("switchText").textContent="There you are! Let the magic begin.";setTimeout(()=>{show("s3");celebrate();},1300);}
+document.getElementById("switch").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();turnOnLights();}});
+function cutCake(){const a=document.getElementById("cakeArea");if(a.classList.contains("cut"))return;a.classList.add("cut");document.getElementById("cakeHint").textContent="You did it! The first slice is yours. Make a wish! ❤️";document.getElementById("cakeNext").style.display="inline-block";celebrate();}
+function celebrate(){const c=document.getElementById("confetti");for(let i=0;i<100;i++){const p=document.createElement("i");p.className="piece";p.style.left=Math.random()*100+"%";p.style.animationDelay=Math.random()*.9+"s";p.style.background=["#f7d78b","#ff8eae","#fff1cc","#c7a5ff"][i%4];c.appendChild(p);setTimeout(()=>p.remove(),4300);}}
+document.getElementById("photos").addEventListener("change",e=>{const g=document.getElementById("gallery");g.innerHTML="";[...e.target.files].slice(0,12).forEach(f=>{const u=URL.createObjectURL(f),d=document.createElement("div"),im=document.createElement("img");d.className="photo";im.src=u;im.alt="Birthday memory";d.appendChild(im);g.appendChild(d);});});
+document.getElementById("music").addEventListener("change",e=>{if(e.target.files[0]){const a=document.getElementById("audio");a.src=URL.createObjectURL(e.target.files[0]);a.play().catch(()=>{});}});
+function playMusic(){const a=document.getElementById("audio");if(!a.src){alert("First add an audio file using the Add your birthday music button.");return;}if(a.paused)a.play();else a.pause();}
+for(let i=0;i<90;i++){const s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*3+"s";document.getElementById("stars").appendChild(s);}
+</script>
+</body></html>
