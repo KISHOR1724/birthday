@@ -1053,6 +1053,10 @@ footer{
 <!-- SCREEN 1: SECRET CHAMBER UNLOCK -->
 <section class="screen active" id="s1">
   <div class="panel">
+    <!-- Revealed at the top of the first screen as soon as the DOB is entered -->
+    <div class="dob-photo-wrap" id="firstTabPhoto" style="display:none;">
+      <img class="dob-photo" src="assets/dob-reveal.jpg" alt="A birthday photo for Deekshith">
+    </div>
     <div class="eyebrow">A little universe, created for you</div>
     
     <!-- Hero Portrait Frame for Deekshith -->
@@ -2285,6 +2289,19 @@ document.getElementById("music").addEventListener("change", e => {
     }).catch(() => {});
   }
 });
+/* REVEAL THE PHOTO ON THE FIRST SCREEN WHEN THE DOB IS ENTERED */
+const birthField = document.getElementById("birthInput");
+function revealFirstTabPhoto() {
+  const wrap = document.getElementById("firstTabPhoto");
+  if (!wrap || !birthField) return;
+  const value = birthField.value;
+  wrap.style.display = value && value.endsWith("-11-21") ? "flex" : "none";
+}
+if (birthField) {
+  birthField.addEventListener("input", revealFirstTabPhoto);
+  birthField.addEventListener("change", revealFirstTabPhoto);
+}
+
 /* GLOBAL BUTTON TOUCH SOUND EVENT LISTENER */
 document.addEventListener("pointerdown", e => {
   const btn = e.target.closest("button, .btn, .file-label, label.file-label");
