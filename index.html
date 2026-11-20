@@ -241,8 +241,8 @@ input[type=date]:focus{
   gap:10px;
 }
 .hero-avatar-frame{
-  width:125px;
-  height:125px;
+  width:150px;
+  height:150px;
   border-radius:50%;
   border:2.5px solid var(--gold);
   background:linear-gradient(135deg,#231830,#110c1a);
@@ -727,8 +727,8 @@ body.lit .lamp-glow{
 /* Step 5: Photorealistic 3D Black Forest Cake */
 .cake-stage{
   position:relative;
-  width:min(390px,94vw);
-  height:310px;
+  width:min(420px,94vw);
+  height:340px;
   margin:20px auto 10px;
   display:grid;
   place-items:center;
@@ -736,8 +736,8 @@ body.lit .lamp-glow{
 }
 .cake-stand-pedestal{
   position:absolute;
-  bottom:4px;
-  width:280px;
+  bottom:0;
+  width:320px;
   height:24px;
   border-radius:50%;
   background:radial-gradient(ellipse at 50% 30%,#fcecc9 0%,#d8a25c 50%,#875820 100%);
@@ -746,127 +746,26 @@ body.lit .lamp-glow{
 }
 .cake-interactive{
   position:relative;
-  width:270px;
-  height:220px;
+  width:360px;
+  height:280px;
   cursor:pointer;
   z-index:2;
   transition:transform 0.4s var(--ease);
 }
-/* Chocolate Cake Base Cylinder */
-.cake-tier{
+/* Photorealistic 3D Black Forest cake artwork */
+.cake-3d-img{
   position:absolute;
-  bottom:16px;
-  left:10px;
-  width:250px;
-  height:110px;
-  border-radius:20px 20px 32px 32px;
-  background:linear-gradient(90deg,#1c0f0a 0%,#3d2116 25%,#26140e 55%,#150b07 100%);
-  border-bottom:14px solid #0d0604;
-  box-shadow:inset 0 -4px 10px rgba(0,0,0,0.8),inset 0 4px 6px rgba(255,255,255,0.06);
-}
-/* Whipped Cream Band Sandwiched in Center */
-.cake-cream-band{
-  position:absolute;
-  bottom:64px;
-  left:10px;
-  width:250px;
-  height:16px;
-  background:linear-gradient(90deg,#ece7de 0%,#ffffff 45%,#ede7dc 100%);
-  box-shadow:0 1px 3px rgba(0,0,0,0.5);
-  border-radius:4px;
-}
-.cake-cream-band::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 35% 50%,rgba(217,4,41,0.8) 0 3px,transparent 4px),
-             radial-gradient(circle at 65% 50%,rgba(217,4,41,0.8) 0 3px,transparent 4px);
-  opacity:0.85;
-}
-/* Top Dark Chocolate Ganache Surface */
-.cake-frosting{
-  position:absolute;
-  bottom:110px;
-  left:10px;
-  width:250px;
-  height:58px;
-  border-radius:50%;
-  background:radial-gradient(ellipse at 45% 40%,#4a281b 0%,#24130d 60%,#150b07 100%);
-  border:3px solid #3d2116;
-  box-shadow:inset 0 3px 8px rgba(255,255,255,0.18),0 3px 6px rgba(0,0,0,0.6);
-}
-/* Chocolate Curls & Shavings on Top */
-.chocolate-shavings{
-  position:absolute;
-  bottom:120px;
-  left:40px;
-  width:190px;
-  height:38px;
-  border-radius:50%;
-  background:
-    radial-gradient(ellipse at 30% 40%,#1a0e09 0 4px,transparent 5px),
-    radial-gradient(ellipse at 50% 60%,#150a06 0 5px,transparent 6px),
-    radial-gradient(ellipse at 70% 35%,#1c0f0a 0 4px,transparent 5px),
-    radial-gradient(ellipse at 40% 75%,#120804 0 3px,transparent 4px),
-    radial-gradient(ellipse at 60% 70%,#1a0e09 0 4px,transparent 5px);
+  left:50%;
+  bottom:4px;
+  width:104%;
+  height:auto;
+  max-height:100%;
+  object-fit:contain;
+  transform:translateX(-50%);
   pointer-events:none;
-  z-index:2;
+  user-select:none;
+  filter:drop-shadow(0 22px 26px rgba(0,0,0,0.6)) drop-shadow(0 0 26px rgba(120,60,30,0.18));
 }
-/* Dark Chocolate Drips */
-.frosting-drips{
-  position:absolute;
-  bottom:86px;
-  left:10px;
-  width:250px;
-  height:42px;
-  border-radius:50%;
-  background:#26140e;
-}
-.drip-p{
-  position:absolute;
-  bottom:64px;
-  width:16px;
-  border-radius:0 0 10px 10px;
-  background:#22120c;
-  box-shadow:inset -1px -2px 3px rgba(0,0,0,0.6);
-}
-.dp-1{left:44px;height:36px}
-.dp-2{left:98px;height:24px}
-.dp-3{left:150px;height:40px}
-.dp-4{left:200px;height:28px}
-
-/* Whipped Cream Rosettes & Maraschino Cherries */
-.rosette-cherry{
-  position:absolute;
-  width:24px;
-  height:32px;
-  z-index:3;
-  pointer-events:none;
-}
-.rosette-cream{
-  position:absolute;
-  bottom:0;
-  width:24px;
-  height:16px;
-  border-radius:50% 50% 40% 40%;
-  background:radial-gradient(circle at 40% 30%,#ffffff,#f5efe6 70%,#ded5c7 100%);
-  box-shadow:0 2px 4px rgba(0,0,0,0.4);
-}
-.maraschino-cherry{
-  position:absolute;
-  top:2px;
-  left:4px;
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#ff5c7c 0%,#d90429 55%,#700216 100%);
-  box-shadow:0 3px 6px rgba(0,0,0,0.6),inset 0 1px 2px rgba(255,255,255,0.7);
-}
-.cherry-1{bottom:128px;left:24px}
-.cherry-2{bottom:142px;left:70px}
-.cherry-3{bottom:146px;left:123px}
-.cherry-4{bottom:142px;left:176px}
-.cherry-5{bottom:128px;left:222px}
 
 /* Multiple Birthday Candles (Left, Center, Right) */
 .candle-multi{
@@ -878,9 +777,9 @@ body.lit .lamp-glow{
   box-shadow:0 3px 8px rgba(0,0,0,0.4);
   z-index:4;
 }
-.candle-left{bottom:146px;left:75px;height:52px}
-.candle-center{bottom:158px;left:128px;height:60px}
-.candle-right{bottom:146px;left:181px;height:52px}
+.candle-left{bottom:192px;left:126px;height:52px}
+.candle-center{bottom:200px;left:168px;height:60px}
+.candle-right{bottom:192px;left:210px;height:52px}
 
 .candle-flame{
   position:absolute;
@@ -894,9 +793,9 @@ body.lit .lamp-glow{
   z-index:5;
   transition:opacity 0.4s var(--ease),transform 0.4s var(--ease);
 }
-.flame-left{bottom:202px;left:73px}
-.flame-center{bottom:222px;left:126px}
-.flame-right{bottom:202px;left:179px}
+.flame-left{bottom:248px;left:124px}
+.flame-center{bottom:264px;left:166px}
+.flame-right{bottom:248px;left:208px}
 
 .candle-flame.extinguished{
   opacity:0;
@@ -913,9 +812,9 @@ body.lit .lamp-glow{
   pointer-events:none;
   z-index:5;
 }
-.smoke-left{bottom:206px;left:77px}
-.smoke-center{bottom:226px;left:130px}
-.smoke-right{bottom:206px;left:183px}
+.smoke-left{bottom:252px;left:128px}
+.smoke-center{bottom:268px;left:170px}
+.smoke-right{bottom:252px;left:212px}
 .smoke-plume.puff{
   animation:smokeRise 1.2s ease-out forwards;
 }
@@ -934,10 +833,8 @@ body.lit .lamp-glow{
 .cake-stage.cut .cake-interactive{
   transform:rotate(-3deg);
 }
-.cake-stage.cut .cake-frosting,
-.cake-stage.cut .cake-tier,
-.cake-stage.cut .cake-cream-band{
-  clip-path:polygon(0 0,100% 0,100% 100%,68% 100%,50% 40%,35% 100%,0 100%);
+.cake-stage.cut .cake-3d-img{
+  clip-path:polygon(0 0,100% 0,100% 100%,72% 100%,58% 45%,42% 100%,0 100%);
 }
 .cake-stage.cut::after{
   content:"";
@@ -956,6 +853,39 @@ body.lit .lamp-glow{
 }
 @keyframes slicePull{
   to{transform:translate(72px,-16px) rotate(22deg)}
+}
+
+/* Microphone blow controls */
+.mic-row{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:4px 0 2px;
+}
+#micStatus{
+  min-height:22px;
+  color:var(--gold);
+}
+
+/* Lyrics shown the moment the correct DOB is entered */
+.dob-lyrics{
+  margin:22px auto 6px;
+  max-width:520px;
+  padding:18px 20px;
+  border-radius:18px;
+  border:1px solid rgba(246,222,176,0.28);
+  background:rgba(18,13,26,0.72);
+  box-shadow:0 12px 34px rgba(0,0,0,0.4);
+  backdrop-filter:blur(14px);
+}
+.dob-lyrics-heading{
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:10px;
+  font-weight:600;
 }
 
 /* Lyrics Showcase for Pirai Thedum Iravile */
@@ -1071,6 +1001,16 @@ body.lit .lamp-glow{
   z-index:99;
 }
 
+/* Small source credit for the licensed cake artwork */
+.art-credit{
+  margin-top:14px;
+  font-size:0.68rem;
+  letter-spacing:0.03em;
+  color:#7e748d;
+}
+.art-credit a{color:#a39bb2;text-decoration:none}
+.art-credit a:hover{text-decoration:underline}
+
 /* Footer note */
 footer{
   font-size:0.75rem;
@@ -1151,6 +1091,14 @@ footer{
       </div>
     </div>
     <p class="hint" id="switchText">Touch the light or switch to brighten your world with golden radiance.</p>
+
+    <!-- Song + lyrics appear here as soon as the correct birth date is entered -->
+    <div class="dob-lyrics" id="dobLyrics" style="display:none;">
+      <div class="dob-lyrics-heading">♫ Pirai Thedum Iravile · playing softly, just for you</div>
+      <div class="lyrics-tamil" id="dobLyricTamil"></div>
+      <div class="lyrics-trans" id="dobLyricTrans"></div>
+      <div class="lyrics-meaning" id="dobLyricMeaning"></div>
+    </div>
   </div>
 </section>
 
@@ -1266,7 +1214,7 @@ footer{
   <div class="panel">
     <div class="eyebrow">Step 05 · The Birthday Ceremony</div>
     <h1 class="title">Make a wish &<br><span class="script">cut the cake!</span></h1>
-    <p class="description" id="cakeInstruction">Tap any candle to make a wish and blow out the flames, then tap the cake to cut your Black Forest slice.</p>
+    <p class="description" id="cakeInstruction">Blow into your mic (or tap a candle) to make a wish, then tap the cake to cut your Black Forest slice.</p>
     
     <div class="cake-stage" id="cakeStage">
       <!-- 3D Pedestal Stand -->
@@ -1275,27 +1223,8 @@ footer{
       <div class="gold-knife">🔪</div>
       
       <div class="cake-interactive" id="cakeBody" onclick="handleCakeClick()">
-        <!-- Rich Dark Chocolate Sponge Base Tier -->
-        <div class="cake-tier"></div>
-        <!-- Whipped Vanilla Cream Band Sandwiched in Center with Cherry Compote -->
-        <div class="cake-cream-band"></div>
-        <!-- Dark Chocolate Ganache Drips -->
-        <div class="frosting-drips"></div>
-        <div class="drip-p dp-1"></div>
-        <div class="drip-p dp-2"></div>
-        <div class="drip-p dp-3"></div>
-        <div class="drip-p dp-4"></div>
-        <!-- Top Ganache Surface -->
-        <div class="cake-frosting"></div>
-        <!-- Chocolate Curls & Flakes on Top -->
-        <div class="chocolate-shavings"></div>
-        
-        <!-- Piped Whipped Cream Rosettes & Glazed Maraschino Cherries -->
-        <div class="rosette-cherry cherry-1"><div class="maraschino-cherry"></div><div class="rosette-cream"></div></div>
-        <div class="rosette-cherry cherry-2"><div class="maraschino-cherry"></div><div class="rosette-cream"></div></div>
-        <div class="rosette-cherry cherry-3"><div class="maraschino-cherry"></div><div class="rosette-cream"></div></div>
-        <div class="rosette-cherry cherry-4"><div class="maraschino-cherry"></div><div class="rosette-cream"></div></div>
-        <div class="rosette-cherry cherry-5"><div class="maraschino-cherry"></div><div class="rosette-cream"></div></div>
+        <!-- Photorealistic 3D Black Forest cake artwork -->
+        <img class="cake-3d-img" src="assets/black-forest-cake.png" alt="Black Forest cake with chocolate ganache, cream and cherries">
 
         <!-- 3 Gold-Striped Candles -->
         <div class="candle-multi candle-left"></div>
@@ -1312,8 +1241,13 @@ footer{
       </div>
     </div>
     
+    <div class="mic-row">
+      <button class="btn secondary" id="micBtn" onclick="toggleBlowDetection()">🎤 Blow into microphone</button>
+    </div>
+    <p class="hint" id="micStatus">Use your mic to blow, or simply tap a flame.</p>
     <p class="hint" id="cakeHint">🎂 Tap the candles to blow them out first!</p>
     <button class="btn" id="cakeNext" style="display:none;" onclick="show('s6')">Read your birthday letter →</button>
+    <p class="art-credit">Cake artwork: Mikelo / Wikimedia Commons · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
   </div>
 </section>
 
@@ -1340,7 +1274,7 @@ footer{
         <span class="music-icon">♫</span>
         <div>
           <div class="song-title">Pirai Thedum Iravile (பிறை தேடும் இரவிலே)</div>
-          <div class="song-subtitle">Mayakkam Enna · Playing with gentle mild volume ❤️</div>
+          <div class="song-subtitle">Mayakkam Enna · played once, softly, on your birthday ❤️</div>
         </div>
       </div>
       
@@ -1352,7 +1286,7 @@ footer{
       </div>
       
       <div class="lyrics-player-controls">
-        <button class="btn" id="piraiBtn" onclick="togglePiraiMusic()">♫ Play / Pause Song</button>
+        <button class="btn" id="piraiBtn" onclick="togglePiraiMusic()">♫ Play song softly</button>
         <button class="btn secondary" id="musicBtn" onclick="toggleMusicBox()">♫ Music Box Chime</button>
         <label class="file-label">
           <span>♫ Add your vocal song file</span>
@@ -1369,7 +1303,8 @@ footer{
   </div>
 </section>
 
-<audio id="audio" src="pirai-thedum-iravile.mp3" loop></audio>
+<!-- No looping background track: add a local song file through the upload control below -->
+<audio id="audio"></audio>
 
 <script>
 /* CONFIGURATION */
@@ -1619,11 +1554,16 @@ function shootArrow() {
   }, 480);
 }
 
-/* PIRAI THEDUM IRAVILE (MILD BGM) */
+/* PIRAI THEDUM IRAVILE — played once, softly, never as a looping BGM */
 let piraiPlaying = false;
 let piraiTimeout = null;
 
-// Exact melody notes for "Pirai Thedum Iravile" (Mayakkam Enna)
+function setPiraiButton(playing){
+  const btn = document.getElementById("piraiBtn");
+  if (btn) btn.textContent = playing ? "⏸ Pause song" : "♫ Play song softly";
+}
+
+// Gentle melody notes inspired by "Pirai Thedum Iravile" (Mayakkam Enna)
 const PIRAI_MELODY = [
   // Pi-rai the-dum i-ra-vi-le
   {f: 293.66, d: 0.38, p: 0.08}, // D4
@@ -1709,7 +1649,9 @@ function playPiraiAcousticNote(freq, dur) {
 function playPiraiStep(idx) {
   if (!piraiPlaying) return;
   if (idx >= PIRAI_MELODY.length) {
-    piraiTimeout = setTimeout(() => playPiraiStep(0), 1200);
+    // One gentle pass only — no looping background music.
+    piraiPlaying = false;
+    setPiraiButton(false);
     return;
   }
   const item = PIRAI_MELODY[idx];
@@ -1718,64 +1660,49 @@ function playPiraiStep(idx) {
   piraiTimeout = setTimeout(() => playPiraiStep(idx + 1), nextDelay);
 }
 
-function startPiraiMildBGM() {
+function stopPirai() {
+  piraiPlaying = false;
+  clearTimeout(piraiTimeout);
   const audio = document.getElementById("audio");
-  const btn = document.getElementById("piraiBtn");
-  if (audio && audio.src && !audio.src.endsWith("#")) {
-    audio.volume = 0.28; // mild volume
+  if (audio) {
+    audio.pause();
+    if (audio.src) { try { audio.currentTime = 0; } catch(e) {} }
+  }
+  setPiraiButton(false);
+}
+
+function playSoftMelodyOnce() {
+  if (piraiPlaying) return;
+  piraiPlaying = true;
+  setPiraiButton(true);
+  playPiraiStep(0);
+}
+
+function playPiraiOnce() {
+  const audio = document.getElementById("audio");
+  if (audio && audio.src) {
+    audio.loop = false;
+    audio.volume = 0.22; // low, one-time volume
+    audio.onended = () => setPiraiButton(false);
     audio.play().then(() => {
-      if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-      if (piraiPlaying) {
-        piraiPlaying = false;
-        clearTimeout(piraiTimeout);
-      }
+      piraiPlaying = false;
+      clearTimeout(piraiTimeout);
+      setPiraiButton(true);
     }).catch(() => {
-      // If file not found, fall back to soft Web Audio synth
-      if (!piraiPlaying) {
-        piraiPlaying = true;
-        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-        playPiraiStep(0);
-      }
+      // No local song file yet: fall back to a soft synthesized melody.
+      playSoftMelodyOnce();
     });
     return;
   }
-  if (!piraiPlaying) {
-    piraiPlaying = true;
-    if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-    playPiraiStep(0);
-  }
+  playSoftMelodyOnce();
 }
 
 function togglePiraiMusic() {
   const audio = document.getElementById("audio");
-  const btn = document.getElementById("piraiBtn");
-  
-  if (audio && audio.src && !audio.src.endsWith("#") && !audio.error) {
-    if (audio.paused) {
-      audio.volume = 0.28;
-      audio.play().then(() => {
-        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-      }).catch(() => {
-        // Fallback to synthesized melody
-        piraiPlaying = true;
-        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-        playPiraiStep(0);
-      });
-    } else {
-      audio.pause();
-      if (btn) btn.textContent = "♫ Play Pirai Thedum (Mild BGM)";
-    }
-    return;
-  }
-  
-  if (piraiPlaying) {
-    piraiPlaying = false;
-    clearTimeout(piraiTimeout);
-    if (btn) btn.textContent = "♫ Play Pirai Thedum (Mild BGM)";
+  if (piraiPlaying || (audio && !audio.paused)) {
+    stopPirai();
   } else {
-    piraiPlaying = true;
-    if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
-    playPiraiStep(0);
+    playPiraiOnce();
   }
 }
 
@@ -1857,21 +1784,8 @@ function playMelodyStep(index) {
 
 function toggleMusicBox() {
   const btn = document.getElementById("musicBtn");
-  const audio = document.getElementById("audio");
-  
-  // If user uploaded custom audio, toggle that
-  if (audio.src) {
-    if (audio.paused) {
-      audio.play();
-      btn.textContent = "⏸ Pause Music";
-    } else {
-      audio.pause();
-      btn.textContent = "♫ Play Music";
-    }
-    return;
-  }
 
-  // Toggle built-in music box chime
+  // Toggle built-in Happy Birthday music box chime
   if (musicBoxPlaying) {
     musicBoxPlaying = false;
     clearTimeout(musicBoxTimeout);
@@ -1925,22 +1839,25 @@ let lyricsIdx = 0;
 let lyricsTimer = null;
 
 function cycleLyrics() {
-  const tEl = document.getElementById("lyricTamil");
-  const rEl = document.getElementById("lyricTrans");
-  const mEl = document.getElementById("lyricMeaning");
-  if (!tEl) return;
   const line = PIRAI_LYRICS[lyricsIdx % PIRAI_LYRICS.length];
-  tEl.style.opacity = "0";
-  rEl.style.opacity = "0";
-  mEl.style.opacity = "0";
-  setTimeout(() => {
-    tEl.textContent = line.tamil;
-    rEl.textContent = line.trans;
-    mEl.textContent = line.meaning;
-    tEl.style.opacity = "1";
-    rEl.style.opacity = "1";
-    mEl.style.opacity = "1";
-  }, 350);
+  [["lyricTamil","lyricTrans","lyricMeaning"],
+   ["dobLyricTamil","dobLyricTrans","dobLyricMeaning"]].forEach(pair => {
+    const tEl = document.getElementById(pair[0]);
+    const rEl = document.getElementById(pair[1]);
+    const mEl = document.getElementById(pair[2]);
+    if (!tEl || !rEl || !mEl) return;
+    tEl.style.opacity = "0";
+    rEl.style.opacity = "0";
+    mEl.style.opacity = "0";
+    setTimeout(() => {
+      tEl.textContent = line.tamil;
+      rEl.textContent = line.trans;
+      mEl.textContent = line.meaning;
+      tEl.style.opacity = "1";
+      rEl.style.opacity = "1";
+      mEl.style.opacity = "1";
+    }, 350);
+  });
   lyricsIdx++;
 }
 
@@ -1961,6 +1878,7 @@ function show(id) {
   }
   if (id === "s5") {
     // Reset candles when cake screen is revisited
+    stopBlowDetection();
     candleExtinguished = false;
     ["flame-left","flame-center","flame-right"].forEach(cls => {
       const el = document.querySelector("." + cls);
@@ -1975,11 +1893,14 @@ function show(id) {
     const cakeNext = document.getElementById("cakeNext");
     if (cakeNext) cakeNext.style.display = "none";
     document.getElementById("cakeHint").textContent = "🎂 Tap the candles to blow them out first!";
-    document.getElementById("cakeInstruction").textContent = "Tap any candle to make a wish and blow out the flames, then tap the cake to cut your Black Forest slice.";
+    document.getElementById("cakeInstruction").textContent = "Blow into your mic (or tap a candle) to make a wish, then tap the cake to cut your Black Forest slice.";
+    const micStatus = document.getElementById("micStatus");
+    if (micStatus) micStatus.textContent = "Use your mic to blow, or simply tap a flame.";
+    const micBtn = document.getElementById("micBtn");
+    if (micBtn) micBtn.textContent = "🎤 Blow into microphone";
   }
   if (id === "s6") {
-    setTimeout(startPiraiMildBGM, 500);
-    setTimeout(startLyricsCycling, 800);
+    if (!lyricsTimer) startLyricsCycling();
   }
 }
 
@@ -1998,7 +1919,12 @@ function unlock() {
   }
   e.textContent = "";
   playChime(987.77, 0.6);
-  setTimeout(() => startPiraiMildBGM(), 900); // Start mild melody right on unlock
+  const dobLyrics = document.getElementById("dobLyrics");
+  if (dobLyrics) dobLyrics.style.display = "block";
+  setTimeout(() => {
+    playPiraiOnce();   // soft, one-time song — not a background loop
+    startLyricsCycling();
+  }, 650);
   show("s2");
 }
 
@@ -2026,11 +1952,89 @@ document.getElementById("switch").addEventListener("keydown", e => {
 
 /* CANDLE BLOWOUT & CAKE CUTTING */
 let candleExtinguished = false;
+let blowStream = null;
+let blowFrame = null;
+let blowAnalyser = null;
+
+function stopBlowDetection() {
+  if (blowFrame) cancelAnimationFrame(blowFrame);
+  blowFrame = null;
+  blowAnalyser = null;
+  if (blowStream) {
+    blowStream.getTracks().forEach(track => track.stop());
+    blowStream = null;
+  }
+  const btn = document.getElementById("micBtn");
+  if (btn) btn.textContent = "🎤 Blow into microphone";
+}
+
+function toggleBlowDetection() {
+  if (blowStream) {
+    stopBlowDetection();
+    const status = document.getElementById("micStatus");
+    if (status && !candleExtinguished) status.textContent = "Listening stopped — tap a flame instead.";
+  } else {
+    startBlowDetection();
+  }
+}
+
+async function startBlowDetection() {
+  if (candleExtinguished) return;
+  const status = document.getElementById("micStatus");
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    if (status) status.textContent = "Mic not supported here — tap a flame instead.";
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }
+    });
+    blowStream = stream;
+    const ctx = getAudioContext();
+    const source = ctx.createMediaStreamSource(stream);
+    const analyser = ctx.createAnalyser();
+    analyser.fftSize = 1024;
+    analyser.smoothingTimeConstant = 0.35;
+    source.connect(analyser);
+    blowAnalyser = analyser;
+
+    if (status) status.textContent = "Listening… blow gently into your microphone 🌬️";
+    const btn = document.getElementById("micBtn");
+    if (btn) btn.textContent = "⏹ Stop listening";
+
+    const samples = new Uint8Array(analyser.fftSize);
+    let loudFrames = 0;
+    function listen() {
+      if (!blowAnalyser || candleExtinguished) { stopBlowDetection(); return; }
+      blowAnalyser.getByteTimeDomainData(samples);
+      let sum = 0;
+      for (let i = 0; i < samples.length; i++) {
+        const v = (samples[i] - 128) / 128;
+        sum += v * v;
+      }
+      const rms = Math.sqrt(sum / samples.length);
+      loudFrames = rms > 0.16 ? loudFrames + 1 : Math.max(0, loudFrames - 1);
+      if (loudFrames >= 4) {
+        blowOutCandles({ stopPropagation: () => {} });
+        stopBlowDetection();
+        return;
+      }
+      blowFrame = requestAnimationFrame(listen);
+    }
+    blowFrame = requestAnimationFrame(listen);
+  } catch (err) {
+    if (status) status.textContent = "Mic unavailable — tap a flame instead.";
+    stopBlowDetection();
+  }
+}
 
 function blowOutCandles(e) {
   e.stopPropagation();
   if (candleExtinguished) return;
   candleExtinguished = true;
+  stopBlowDetection();
+  const micStatus = document.getElementById("micStatus");
+  if (micStatus) micStatus.textContent = "Wish blown out! ✨";
   playBlowoutSound();
 
   // Extinguish all three flames
@@ -2062,16 +2066,45 @@ function handleCakeClick() {
   }
 }
 
-/* HERO PHOTO HANDLER */
-function handleHeroPhoto(e) {
-  if (!e.target.files || !e.target.files[0]) return;
-  const url = URL.createObjectURL(e.target.files[0]);
+/* HERO PHOTO HANDLER — the photo slot is on the DOB entry screen */
+function showHeroPhoto(src) {
   const img = document.getElementById("heroAvatarImg");
   const placeholder = document.getElementById("avatarPlaceholder");
-  if (img) { img.src = url; img.style.display = "block"; }
+  if (img) { img.src = src; img.style.display = "block"; }
   if (placeholder) placeholder.style.display = "none";
-  playChime(880, 0.5);
 }
+
+function restoreHeroPhoto() {
+  try {
+    const saved = localStorage.getItem("birthdayHeroPhoto");
+    if (saved) showHeroPhoto(saved);
+  } catch (e) {}
+}
+
+function handleHeroPhoto(e) {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const image = new Image();
+    image.onload = () => {
+      // Store a small square version so the photo survives a page refresh.
+      const size = 600;
+      const canvas = document.createElement("canvas");
+      canvas.width = canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      const side = Math.min(image.width, image.height);
+      ctx.drawImage(image, (image.width - side) / 2, (image.height - side) / 2, side, side, 0, 0, size, size);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+      showHeroPhoto(dataUrl);
+      try { localStorage.setItem("birthdayHeroPhoto", dataUrl); } catch (err) {}
+      playChime(880, 0.5);
+    };
+    image.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+}
+restoreHeroPhoto();
 
 function performCakeCut() {
   const stage = document.getElementById("cakeStage");
@@ -2212,10 +2245,11 @@ document.getElementById("music").addEventListener("change", e => {
   if (e.target.files[0]) {
     const a = document.getElementById("audio");
     a.src = URL.createObjectURL(e.target.files[0]);
-    a.volume = 0.28; // mild volume
+    a.loop = false;
+    a.volume = 0.22; // low, one-time volume
     a.play().then(() => {
       const pBtn = document.getElementById("piraiBtn");
-      if (pBtn) pBtn.textContent = "⏸ Pause Audio (Mild BGM)";
+      if (pBtn) pBtn.textContent = "⏸ Pause song";
       if (piraiPlaying) {
         piraiPlaying = false;
         clearTimeout(piraiTimeout);
