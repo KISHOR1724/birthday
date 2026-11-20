@@ -1066,6 +1066,85 @@ function playChime(freq = 880, duration = 0.8) {
   } catch(e) {}
 }
 
+/* FESTIVE BIRTHDAY BUTTON SOUND SYSTEM */
+const BDAY_CHIME_SCALE = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51]; // C5, E5, G5, B5, C6, E6
+let bdayChimeIndex = 0;
+
+function playBirthdayButtonSound() {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // Step through joyful celebratory notes
+    const freq = BDAY_CHIME_SCALE[bdayChimeIndex % BDAY_CHIME_SCALE.length];
+    bdayChimeIndex++;
+
+    // Primary bell tone
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, now);
+
+    // Warm sparkling harmonic overtone
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(freq * 2.005, now);
+
+    // Crisp, musical envelope
+    gainNode.gain.setValueAtTime(0.24, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + 0.43);
+    osc2.stop(now + 0.43);
+
+    // Subtle glockenspiel acoustic chime echo (45ms delay)
+    const echoOsc = ctx.createOscillator();
+    const echoGain = ctx.createGain();
+    echoOsc.type = 'sine';
+    echoOsc.frequency.setValueAtTime(freq * 1.5, now + 0.045);
+    echoGain.gain.setValueAtTime(0.09, now + 0.045);
+    echoGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+    echoOsc.connect(echoGain);
+    echoGain.connect(ctx.destination);
+    echoOsc.start(now + 0.045);
+    echoOsc.stop(now + 0.33);
+  } catch(e) {}
+}
+
+function playPartyPopSound() {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // Party popper transient
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(200, now);
+    osc.frequency.exponentialRampToValueAtTime(45, now + 0.07);
+    gain.gain.setValueAtTime(0.38, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.08);
+
+    // Sparkle chime flourish
+    setTimeout(() => {
+      [523.25, 659.25, 783.99, 1046.50].forEach((f, idx) => {
+        setTimeout(() => playNote(f, 0.2), idx * 40);
+      });
+    }, 45);
+  } catch(e) {}
+}
+
 function playBlowoutSound() {
   try {
     const ctx = getAudioContext();
@@ -1438,6 +1517,7 @@ window.addEventListener("resize", resizeConfettiCanvas);
 resizeConfettiCanvas();
 
 function launchConfettiBurst() {
+  playPartyPopSound();
   const colors = ["#f6deb0", "#f7cf7c", "#f7a8b8", "#fff2d5", "#c39bf5", "#70d6ff"];
   for (let i = 0; i < 90; i++) {
     confettiParticles.push({
@@ -1519,6 +1599,13 @@ document.getElementById("music").addEventListener("change", e => {
         clearTimeout(musicBoxTimeout);
       }
     }).catch(() => {});
+  }
+});
+/* GLOBAL BUTTON TOUCH SOUND EVENT LISTENER */
+document.addEventListener("pointerdown", e => {
+  const btn = e.target.closest("button, .btn, .file-label, label.file-label");
+  if (btn) {
+    playBirthdayButtonSound();
   }
 });
 </script>
