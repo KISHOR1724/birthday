@@ -350,88 +350,82 @@ body.lit .lamp-glow{
 .love-stage{
   position:relative;
   width:min(440px,94vw);
-  height:230px;
+  height:240px;
   margin:10px auto 20px;
   display:grid;
   place-items:center;
   user-select:none;
   cursor:pointer;
 }
-.heart-container{
+.heart-cupid-wrapper{
   position:relative;
-  width:160px;
-  height:150px;
+  width:260px;
+  height:210px;
   display:grid;
   place-items:center;
-}
-.beating-heart{
-  width:140px;
-  height:130px;
   transform-origin:center center;
-  animation:heartIdle 1.8s infinite ease-in-out;
-  transition:transform 0.4s var(--ease),filter 0.4s var(--ease);
+  transition:transform 0.4s var(--ease);
+}
+.heart-cupid-svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+  animation:heartIdle 2s infinite ease-in-out;
 }
 @keyframes heartIdle{
   0%, 100%{transform:scale(1)}
-  15%{transform:scale(1.12)}
-  30%{transform:scale(1.04)}
-  45%{transform:scale(1.16)}
+  15%{transform:scale(1.08)}
+  30%{transform:scale(1.03)}
+  45%{transform:scale(1.12)}
 }
-.beating-heart.struck{
-  animation:heartImpact 0.8s var(--ease) forwards;
-}
-@keyframes heartImpact{
-  0%{transform:scale(1)}
-  25%{transform:scale(1.35) rotate(-3deg)}
-  50%{transform:scale(1.18) rotate(2deg)}
-  75%{transform:scale(1.24) rotate(-1deg)}
-  100%{transform:scale(1.15) rotate(0)}
-}
-.flying-arrow{
-  position:absolute;
-  width:160px;
-  height:36px;
-  left:50%;
-  top:50%;
-  transform-origin:135px 18px;
-  transform:translate(-280px,-160px) rotate(28deg);
+.arrow-group,
+.arrow-front-overlay{
+  transform-origin:88px 76px;
+  transform:translate(-240px,-180px);
   opacity:0;
-  pointer-events:none;
-  z-index:5;
+  transition:none;
 }
-.flying-arrow.shoot{
-  animation:arrowFly 1.1s var(--ease-enter) forwards;
+.arrow-group.shoot,
+.arrow-front-overlay.shoot{
+  animation:arrowFlyIn 0.75s var(--ease-enter) forwards;
 }
-@keyframes arrowFly{
+@keyframes arrowFlyIn{
   0%{
-    transform:translate(-290px,-170px) rotate(28deg) scale(0.85);
+    transform:translate(-240px,-180px);
     opacity:0;
   }
-  15%{
-    transform:translate(-260px,-150px) rotate(28deg) scale(1);
-    opacity:1;
-  }
-  50%{
-    transform:translate(-68px,-14px) rotate(28deg) scale(1);
-    opacity:1;
-  }
-  55%{
-    transform:translate(-60px,-10px) rotate(26deg);
+  20%{
+    transform:translate(-190px,-145px);
     opacity:1;
   }
   65%{
-    transform:translate(-64px,-12px) rotate(28deg);
+    transform:translate(6px,5px);
+    opacity:1;
+  }
+  78%{
+    transform:translate(-3px,-2px);
     opacity:1;
   }
   100%{
-    transform:translate(-62px,-11px) rotate(28deg);
+    transform:translate(0,0);
     opacity:1;
   }
 }
-.arrow-svg{
-  width:100%;
-  height:100%;
-  filter:drop-shadow(0 0 10px rgba(255,225,140,0.9));
+.heart-cupid-svg.struck{
+  animation:heartImpactBeats 0.9s var(--ease) forwards, heartStruckIdle 1.8s infinite 0.9s ease-in-out;
+}
+@keyframes heartImpactBeats{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.3) rotate(-3deg)}
+  50%{transform:scale(1.15) rotate(2deg)}
+  75%{transform:scale(1.22) rotate(-1deg)}
+  100%{transform:scale(1.1) rotate(0)}
+}
+@keyframes heartStruckIdle{
+  0%, 100%{transform:scale(1.08)}
+  20%{transform:scale(1.18)}
+  40%{transform:scale(1.12)}
+  60%{transform:scale(1.22)}
 }
 .floating-hearts-layer{
   position:absolute;
@@ -496,6 +490,50 @@ body.lit .lamp-glow{
   font-size:1.2rem;
   margin-top:16px;
   font-weight:600;
+}
+
+/* Background Song Card */
+.song-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(246,222,176,0.28);
+  border-radius:20px;
+  padding:16px 22px;
+  margin:20px auto 14px;
+  max-width:540px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+.song-info{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;
+}
+.music-icon{
+  font-size:1.6rem;
+  color:var(--gold);
+  animation:float 2.5s infinite ease-in-out alternate;
+}
+.song-title{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:1.1rem;
+  color:#fff;
+}
+.song-subtitle{
+  font-size:0.82rem;
+  color:var(--gold);
+  font-style:italic;
+}
+.song-controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 /* Step 3 & 6: Glowing Celestial Orb */
@@ -857,46 +895,52 @@ footer{
     <div class="eyebrow">Step 03 · Straight to the Heart</div>
     
     <div class="love-stage" id="loveStage" onclick="shootArrow()">
-      <div class="heart-container" id="heartContainer">
-        <!-- Beating 3D Heart -->
-        <svg class="beating-heart" id="beatingHeart" viewBox="0 0 100 90">
+      <div class="heart-cupid-wrapper" id="heartCupidWrapper">
+        <svg class="heart-cupid-svg" id="heartCupidSvg" viewBox="0 0 240 200">
           <defs>
             <radialGradient id="heartGrad" cx="35%" cy="30%" r="70%">
               <stop offset="0%" stop-color="#ff8fab" />
-              <stop offset="35%" stop-color="#ff3366" />
+              <stop offset="35%" stop-color="#ff2a6d" />
               <stop offset="75%" stop-color="#c9184a" />
               <stop offset="100%" stop-color="#590d22" />
             </radialGradient>
-            <filter id="heartGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff3366" flood-opacity="0.85"/>
+            <linearGradient id="arrowGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff8db"/>
+              <stop offset="30%" stop-color="#f7cf7c"/>
+              <stop offset="70%" stop-color="#e5a93b"/>
+              <stop offset="100%" stop-color="#fff3c4"/>
+            </linearGradient>
+            <filter id="heartGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#ff2a6d" flood-opacity="0.85"/>
+            </filter>
+            <filter id="arrowGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ffd56b" flood-opacity="0.95"/>
             </filter>
           </defs>
-          <path d="M 50,28 A 18,18 0 0,0 18,28 C 18,48 50,74 50,74 C 50,74 82,48 82,28 A 18,18 0 0,0 50,28 Z" fill="url(#heartGrad)" filter="url(#heartGlow)"/>
+
+          <!-- Arrow Shaft & Feathers (Entering top-left) -->
+          <g class="arrow-group" id="arrowGroup">
+            <!-- Feathered Fletching -->
+            <path d="M 18,20 L 38,36 L 24,42 M 26,14 L 46,30 L 32,36 M 34,8 L 54,24 L 40,30" stroke="url(#arrowGold)" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#arrowGlow)"/>
+            <!-- Entering Shaft -->
+            <line x1="16" y1="18" x2="88" y2="76" stroke="url(#arrowGold)" stroke-width="4.5" stroke-linecap="round" filter="url(#arrowGlow)"/>
+            <!-- Shaft Emerging from Heart -->
+            <line x1="88" y1="76" x2="195" y2="155" stroke="url(#arrowGold)" stroke-width="4.5" stroke-linecap="round" filter="url(#arrowGlow)"/>
+            <!-- Arrowhead Emerging on Bottom-Right -->
+            <polygon points="190,140 216,170 180,160 192,152" fill="url(#arrowGold)" filter="url(#arrowGlow)"/>
+          </g>
+
+          <!-- Heart Body -->
+          <path class="heart-shape" d="M 120,55 C 105,25 65,22 45,50 C 20,80 50,120 120,165 C 190,120 220,80 195,50 C 175,22 135,25 120,55 Z" fill="url(#heartGrad)" filter="url(#heartGlow)"/>
+
+          <!-- Front Layer: Glowing Entry Puncture Slit & Stardust -->
+          <g class="arrow-front-overlay" id="arrowFrontOverlay">
+            <ellipse cx="88" cy="76" rx="6" ry="3.5" transform="rotate(-38 88 76)" fill="#fff1c2" filter="url(#arrowGlow)"/>
+            <line x1="140" y1="114" x2="195" y2="155" stroke="url(#arrowGold)" stroke-width="4.5" stroke-linecap="round" filter="url(#arrowGlow)"/>
+            <polygon points="190,140 216,170 180,160 192,152" fill="url(#arrowGold)" filter="url(#arrowGlow)"/>
+            <circle cx="88" cy="76" r="3" fill="#ffffff" filter="url(#arrowGlow)"/>
+          </g>
         </svg>
-        
-        <!-- Flying Cupid Arrow -->
-        <div class="flying-arrow" id="flyingArrow">
-          <svg viewBox="0 0 140 28" class="arrow-svg">
-            <defs>
-              <linearGradient id="arrowGold" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#f6deb0"/>
-                <stop offset="40%" stop-color="#f7cf7c"/>
-                <stop offset="85%" stop-color="#ffe699"/>
-                <stop offset="100%" stop-color="#ffffff"/>
-              </linearGradient>
-              <filter id="arrowGlow">
-                <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffd56b" flood-opacity="0.95"/>
-              </filter>
-            </defs>
-            <!-- Shaft -->
-            <line x1="22" y1="14" x2="128" y2="14" stroke="url(#arrowGold)" stroke-width="3" stroke-linecap="round" filter="url(#arrowGlow)"/>
-            <!-- Arrowhead -->
-            <polygon points="122,7 138,14 122,21 126,14" fill="url(#arrowGold)" filter="url(#arrowGlow)"/>
-            <!-- Feathers -->
-            <path d="M 6,5 L 20,14 L 6,23 M 12,5 L 26,14 L 12,23" fill="none" stroke="url(#arrowGold)" stroke-width="2.5" stroke-linecap="round" filter="url(#arrowGlow)"/>
-          </svg>
-        </div>
-        
         <!-- Floating Mini Hearts Explosion Layer -->
         <div class="floating-hearts-layer" id="floatingHeartsLayer"></div>
       </div>
@@ -996,20 +1040,33 @@ footer{
     
     <div class="signature-sign">With love & warmest wishes, always ❤️</div>
     
-    <div class="upload-row">
-      <button class="btn" id="musicBtn" onclick="toggleMusicBox()">♫ Play Music Box</button>
-      <label class="file-label">
-        <span>♫ Choose custom audio</span>
-        <input id="music" type="file" accept="audio/*">
-      </label>
-      <button class="btn secondary" onclick="launchConfettiBurst()">Burst Confetti! ✨</button>
+    <div class="song-card">
+      <div class="song-info">
+        <span class="music-icon">♫</span>
+        <div>
+          <div class="song-title">Pirai Thedum Iravile</div>
+          <div class="song-subtitle">Mild Romantic Background Music (Mayakkam Enna)</div>
+        </div>
+      </div>
+      <div class="song-controls">
+        <button class="btn" id="piraiBtn" onclick="togglePiraiMusic()">♫ Play / Pause Pirai Thedum</button>
+        <button class="btn secondary" id="musicBtn" onclick="toggleMusicBox()">♫ Music Box Chime</button>
+        <label class="file-label">
+          <span>♫ Choose custom audio</span>
+          <input id="music" type="file" accept="audio/*">
+        </label>
+      </div>
+    </div>
+    
+    <div>
+      <button class="btn" onclick="launchConfettiBurst()">Burst Confetti! ✨</button>
     </div>
     
     <footer>You can add your own custom photos and music before sharing.</footer>
   </div>
 </section>
 
-<audio id="audio" loop></audio>
+<audio id="audio" src="pirai-thedum-iravile.mp3" loop></audio>
 
 <script>
 /* CONFIGURATION */
@@ -1066,55 +1123,29 @@ function playChime(freq = 880, duration = 0.8) {
   } catch(e) {}
 }
 
-/* FESTIVE BIRTHDAY BUTTON SOUND SYSTEM */
-const BDAY_CHIME_SCALE = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51]; // C5, E5, G5, B5, C6, E6
-let bdayChimeIndex = 0;
-
+/* TACTILE SUBTLE BUTTON SOUND */
 function playBirthdayButtonSound() {
   try {
     const ctx = getAudioContext();
     const now = ctx.currentTime;
     
-    // Step through joyful celebratory notes
-    const freq = BDAY_CHIME_SCALE[bdayChimeIndex % BDAY_CHIME_SCALE.length];
-    bdayChimeIndex++;
-
-    // Primary bell tone
-    const osc1 = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
+    // Crisp, subtle modern wooden bubble tap
+    const osc = ctx.createOscillator();
     const gainNode = ctx.createGain();
 
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(freq, now);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, now);
+    osc.frequency.exponentialRampToValueAtTime(820, now + 0.025);
+    osc.frequency.exponentialRampToValueAtTime(260, now + 0.06);
 
-    // Warm sparkling harmonic overtone
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(freq * 2.005, now);
+    gainNode.gain.setValueAtTime(0.18, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
-    // Crisp, musical envelope
-    gainNode.gain.setValueAtTime(0.24, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
-
-    osc1.connect(gainNode);
-    osc2.connect(gainNode);
+    osc.connect(gainNode);
     gainNode.connect(ctx.destination);
 
-    osc1.start(now);
-    osc2.start(now);
-    osc1.stop(now + 0.43);
-    osc2.stop(now + 0.43);
-
-    // Subtle glockenspiel acoustic chime echo (45ms delay)
-    const echoOsc = ctx.createOscillator();
-    const echoGain = ctx.createGain();
-    echoOsc.type = 'sine';
-    echoOsc.frequency.setValueAtTime(freq * 1.5, now + 0.045);
-    echoGain.gain.setValueAtTime(0.09, now + 0.045);
-    echoGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
-    echoOsc.connect(echoGain);
-    echoGain.connect(ctx.destination);
-    echoOsc.start(now + 0.045);
-    echoOsc.stop(now + 0.33);
+    osc.start(now);
+    osc.stop(now + 0.065);
   } catch(e) {}
 }
 
@@ -1170,50 +1201,67 @@ function playBlowoutSound() {
   } catch(e) {}
 }
 
-function playArrowWhoosh() {
+/* ROMANTIC ARROW STRIKE SOUND */
+function playArrowStrikeSound() {
   try {
     const ctx = getAudioContext();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
+    const now = ctx.currentTime;
 
-    osc.type = 'sawtooth';
-    filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(320, ctx.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.32);
-    filter.frequency.exponentialRampToValueAtTime(250, ctx.currentTime + 0.6);
+    // 1. Aerodynamic arrow flight whistle
+    const whooshOsc = ctx.createOscillator();
+    const whooshFilter = ctx.createBiquadFilter();
+    const whooshGain = ctx.createGain();
 
-    gain.gain.setValueAtTime(0.01, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.24, ctx.currentTime + 0.28);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+    whooshOsc.type = 'sawtooth';
+    whooshFilter.type = 'bandpass';
+    whooshFilter.frequency.setValueAtTime(700, now);
+    whooshFilter.frequency.exponentialRampToValueAtTime(2400, now + 0.25);
+    whooshFilter.frequency.exponentialRampToValueAtTime(400, now + 0.45);
 
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
+    whooshGain.gain.setValueAtTime(0.01, now);
+    whooshGain.gain.linearRampToValueAtTime(0.18, now + 0.22);
+    whooshGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
 
-    osc.start();
-    osc.stop(ctx.currentTime + 0.62);
-  } catch(e) {}
-}
+    whooshOsc.connect(whooshFilter);
+    whooshFilter.connect(whooshGain);
+    whooshGain.connect(ctx.destination);
 
-function playHeartbeat() {
-  try {
-    const ctx = getAudioContext();
-    [0, 0.16].forEach(timeOffset => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(85, ctx.currentTime + timeOffset);
-      osc.frequency.exponentialRampToValueAtTime(38, ctx.currentTime + timeOffset + 0.14);
+    whooshOsc.start(now);
+    whooshOsc.stop(now + 0.46);
 
-      gain.gain.setValueAtTime(0.35, ctx.currentTime + timeOffset);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + timeOffset + 0.14);
+    // 2. Heart Impact Thud (at 0.44s)
+    setTimeout(() => {
+      const thumpOsc = ctx.createOscillator();
+      const thumpGain = ctx.createGain();
+      thumpOsc.type = 'triangle';
+      thumpOsc.frequency.setValueAtTime(160, ctx.currentTime);
+      thumpOsc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(ctx.currentTime + timeOffset);
-      osc.stop(ctx.currentTime + timeOffset + 0.15);
-    });
+      thumpGain.gain.setValueAtTime(0.38, ctx.currentTime);
+      thumpGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+      thumpOsc.connect(thumpGain);
+      thumpGain.connect(ctx.destination);
+      thumpOsc.start(ctx.currentTime);
+      thumpOsc.stop(ctx.currentTime + 0.16);
+
+      // 3. Romantic Cupid Harp Cascade (arpeggio of 5 sparkling notes: D5, F#5, A5, D6, F#6)
+      const harpNotes = [587.33, 739.99, 880.00, 1174.66, 1479.98];
+      harpNotes.forEach((f, idx) => {
+        setTimeout(() => {
+          const hOsc = ctx.createOscillator();
+          const hGain = ctx.createGain();
+          hOsc.type = 'sine';
+          hOsc.frequency.setValueAtTime(f, ctx.currentTime);
+          hGain.gain.setValueAtTime(0.14, ctx.currentTime);
+          hGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.75);
+          hOsc.connect(hGain);
+          hGain.connect(ctx.destination);
+          hOsc.start(ctx.currentTime);
+          hOsc.stop(ctx.currentTime + 0.8);
+        }, idx * 50);
+      });
+    }, 440);
   } catch(e) {}
 }
 
@@ -1245,26 +1293,187 @@ function spawnMiniHearts() {
 
 let arrowShooting = false;
 function shootArrow() {
-  const arrow = document.getElementById("flyingArrow");
-  const heart = document.getElementById("beatingHeart");
+  const arrowGrp = document.getElementById("arrowGroup");
+  const arrowOverlay = document.getElementById("arrowFrontOverlay");
+  const heartSvg = document.getElementById("heartCupidSvg");
   const msg = document.getElementById("loveMessageBox");
-  if (!arrow || !heart) return;
+  if (!arrowGrp || !heartSvg) return;
   
-  arrow.classList.remove("shoot");
-  heart.classList.remove("struck");
+  arrowGrp.classList.remove("shoot");
+  if (arrowOverlay) arrowOverlay.classList.remove("shoot");
+  heartSvg.classList.remove("struck");
   if (msg) msg.classList.remove("visible");
-  void arrow.offsetWidth; // Force layout reflow
+  void arrowGrp.offsetWidth; // Force layout reflow
   
-  playArrowWhoosh();
-  arrow.classList.add("shoot");
+  playArrowStrikeSound();
+  arrowGrp.classList.add("shoot");
+  if (arrowOverlay) arrowOverlay.classList.add("shoot");
   
   setTimeout(() => {
-    heart.classList.add("struck");
-    playHeartbeat();
-    playChime(1174.66, 1.2);
+    heartSvg.classList.add("struck");
     spawnMiniHearts();
     if (msg) msg.classList.add("visible");
-  }, 520);
+  }, 480);
+}
+
+/* PIRAI THEDUM IRAVILE (MILD BGM) */
+let piraiPlaying = false;
+let piraiTimeout = null;
+
+// Exact melody notes for "Pirai Thedum Iravile" (Mayakkam Enna)
+const PIRAI_MELODY = [
+  // Pi-rai the-dum i-ra-vi-le
+  {f: 293.66, d: 0.38, p: 0.08}, // D4
+  {f: 349.23, d: 0.38, p: 0.08}, // F4
+  {f: 392.00, d: 0.38, p: 0.08}, // G4
+  {f: 440.00, d: 0.58, p: 0.12}, // A4
+  {f: 466.16, d: 0.38, p: 0.08}, // Bb4
+  {f: 440.00, d: 0.38, p: 0.08}, // A4
+  {f: 392.00, d: 0.58, p: 0.12}, // G4
+  {f: 349.23, d: 0.75, p: 0.25}, // F4
+  
+  // u-yi-re...
+  {f: 440.00, d: 0.48, p: 0.08}, // A4
+  {f: 523.25, d: 0.48, p: 0.08}, // C5
+  {f: 466.16, d: 0.85, p: 0.15}, // Bb4
+  {f: 440.00, d: 1.15, p: 0.45}, // A4
+  
+  // e-thai the-di a-lai-gi-raai
+  {f: 349.23, d: 0.38, p: 0.08}, // F4
+  {f: 392.00, d: 0.38, p: 0.08}, // G4
+  {f: 440.00, d: 0.38, p: 0.08}, // A4
+  {f: 392.00, d: 0.48, p: 0.10}, // G4
+  {f: 349.23, d: 0.48, p: 0.10}, // F4
+  {f: 329.63, d: 0.58, p: 0.12}, // E4
+  {f: 293.66, d: 1.40, p: 0.60}, // D4
+  
+  // ka-thaa-ga tha-vazhn-dhaa-yo
+  {f: 440.00, d: 0.48, p: 0.08}, // A4
+  {f: 466.16, d: 0.48, p: 0.08}, // Bb4
+  {f: 523.25, d: 0.55, p: 0.10}, // C5
+  {f: 587.33, d: 0.55, p: 0.10}, // D5
+  {f: 523.25, d: 0.48, p: 0.08}, // C5
+  {f: 466.16, d: 0.48, p: 0.08}, // Bb4
+  {f: 440.00, d: 0.95, p: 0.35}, // A4
+  
+  // kan-nee-raa-ga ma-rain-dhaa-yo
+  {f: 392.00, d: 0.38, p: 0.08}, // G4
+  {f: 440.00, d: 0.38, p: 0.08}, // A4
+  {f: 466.16, d: 0.48, p: 0.10}, // Bb4
+  {f: 440.00, d: 0.48, p: 0.10}, // A4
+  {f: 392.00, d: 0.48, p: 0.10}, // G4
+  {f: 349.23, d: 0.48, p: 0.10}, // F4
+  {f: 329.63, d: 0.58, p: 0.12}, // E4
+  {f: 293.66, d: 1.80, p: 1.00}  // D4
+];
+
+function playPiraiAcousticNote(freq, dur) {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // Soft romantic flute/piano tone (mild volume 0.13)
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+    
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, now);
+    
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(freq * 0.5, now);
+    
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1400, now);
+    
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.13, now + 0.06);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + dur + 0.5);
+    
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + dur + 0.55);
+    osc2.stop(now + dur + 0.55);
+  } catch(e) {}
+}
+
+function playPiraiStep(idx) {
+  if (!piraiPlaying) return;
+  if (idx >= PIRAI_MELODY.length) {
+    piraiTimeout = setTimeout(() => playPiraiStep(0), 1200);
+    return;
+  }
+  const item = PIRAI_MELODY[idx];
+  playPiraiAcousticNote(item.f, item.d);
+  const nextDelay = (item.d + item.p) * 1000;
+  piraiTimeout = setTimeout(() => playPiraiStep(idx + 1), nextDelay);
+}
+
+function startPiraiMildBGM() {
+  const audio = document.getElementById("audio");
+  const btn = document.getElementById("piraiBtn");
+  if (audio && audio.src && !audio.src.endsWith("#")) {
+    audio.volume = 0.28; // mild volume
+    audio.play().then(() => {
+      if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+      if (piraiPlaying) {
+        piraiPlaying = false;
+        clearTimeout(piraiTimeout);
+      }
+    }).catch(() => {
+      // If file not found, fall back to soft Web Audio synth
+      if (!piraiPlaying) {
+        piraiPlaying = true;
+        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+        playPiraiStep(0);
+      }
+    });
+    return;
+  }
+  if (!piraiPlaying) {
+    piraiPlaying = true;
+    if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+    playPiraiStep(0);
+  }
+}
+
+function togglePiraiMusic() {
+  const audio = document.getElementById("audio");
+  const btn = document.getElementById("piraiBtn");
+  
+  if (audio && audio.src && !audio.src.endsWith("#") && !audio.error) {
+    if (audio.paused) {
+      audio.volume = 0.28;
+      audio.play().then(() => {
+        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+      }).catch(() => {
+        // Fallback to synthesized melody
+        piraiPlaying = true;
+        if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+        playPiraiStep(0);
+      });
+    } else {
+      audio.pause();
+      if (btn) btn.textContent = "♫ Play Pirai Thedum (Mild BGM)";
+    }
+    return;
+  }
+  
+  if (piraiPlaying) {
+    piraiPlaying = false;
+    clearTimeout(piraiTimeout);
+    if (btn) btn.textContent = "♫ Play Pirai Thedum (Mild BGM)";
+  } else {
+    piraiPlaying = true;
+    if (btn) btn.textContent = "⏸ Pause Pirai Thedum (Mild BGM)";
+    playPiraiStep(0);
+  }
 }
 
 /* MUSIC BOX RENDERING OF "HAPPY BIRTHDAY" */
@@ -1379,6 +1588,9 @@ function show(id) {
   window.scrollTo({top: 0, behavior: "smooth"});
   if (id === "s3") {
     setTimeout(shootArrow, 450);
+  }
+  if (id === "s6") {
+    setTimeout(startPiraiMildBGM, 500);
   }
 }
 
@@ -1592,8 +1804,14 @@ document.getElementById("music").addEventListener("change", e => {
   if (e.target.files[0]) {
     const a = document.getElementById("audio");
     a.src = URL.createObjectURL(e.target.files[0]);
+    a.volume = 0.28; // mild volume
     a.play().then(() => {
-      document.getElementById("musicBtn").textContent = "⏸ Pause Music";
+      const pBtn = document.getElementById("piraiBtn");
+      if (pBtn) pBtn.textContent = "⏸ Pause Audio (Mild BGM)";
+      if (piraiPlaying) {
+        piraiPlaying = false;
+        clearTimeout(piraiTimeout);
+      }
       if (musicBoxPlaying) {
         musicBoxPlaying = false;
         clearTimeout(musicBoxTimeout);
