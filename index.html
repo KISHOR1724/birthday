@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080711">
-<title>A Little Birthday Universe for Kishor</title>
+<title>A Little Birthday Universe for Deekshith Vishal Velu</title>
 <style>
 :root{--gold:#f7d78b;--pink:#ff8eae;--ink:#080711;--muted:#c9c2d5}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:#fff;font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
@@ -12,7 +12,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 #stars{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3s infinite ease-in-out alternate}@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
 .screen{min-height:100svh;display:none;place-items:center;padding:32px 18px;position:relative}.screen.active{display:grid;animation:fade .9s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .panel{width:min(760px,100%);text-align:center;padding:clamp(24px,5vw,52px);border:1px solid #f7d78b44;border-radius:28px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);box-shadow:0 20px 90px #0008;backdrop-filter:blur(12px)}
-.eyebrow{letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font:11px Arial,sans-serif}.title{font-size:clamp(2.5rem,8vw,5.7rem);line-height:.98;margin:18px 0;color:#fff;text-shadow:0 0 35px #ffb8d355}.script{font-style:italic;color:var(--gold)}p{color:var(--muted);font-size:clamp(1rem,2.5vw,1.2rem);line-height:1.7}
+.eyebrow{letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font:11px Arial,sans-serif}.title{font-size:clamp(2rem,7vw,4.8rem);line-height:1.15;margin:18px 0;color:#fff;text-shadow:0 0 35px #ffb8d355;word-wrap:break-word}.script{font-style:italic;color:var(--gold)}p{color:var(--muted);font-size:clamp(1rem,2.5vw,1.2rem);line-height:1.7}
 input[type=date],input[type=text]{width:min(330px,100%);padding:15px 17px;border:1px solid #f7d78b77;border-radius:14px;background:#100d1c;color:white;font:16px Arial,sans-serif;margin:12px 0}
 button,.filelabel{border:1px solid #f7d78b99;background:linear-gradient(110deg,#f6d58a,#c68a57);color:#241326;padding:14px 24px;border-radius:999px;font-weight:bold;letter-spacing:.04em;cursor:pointer;margin:8px;font: bold 13px Arial,sans-serif;transition:.25s}
 button:hover,.filelabel:hover{transform:translateY(-2px);box-shadow:0 8px 30px #e5b66a44}.secondary{background:transparent;color:var(--gold)}.hint{font:12px Arial,sans-serif;color:#aaa2b7;margin-top:15px}.error{color:#ff9aa8;min-height:22px;font:13px Arial,sans-serif}
@@ -27,14 +27,14 @@ button:hover,.filelabel:hover{transform:translateY(-2px);box-shadow:0 8px 30px #
 .message{font-size:clamp(1.5rem,5vw,2.6rem);line-height:1.35;color:#fff}.signature{color:var(--gold);font-style:italic;font-size:1.4rem;margin-top:25px}
 #confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}.piece{position:absolute;top:-20px;width:8px;height:13px;background:var(--gold);animation:fall 3s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(780deg);opacity:0}}
 footer{font:11px Arial,sans-serif;color:#82798d;margin-top:28px}.small{font-size:.9rem}
-@media(max-width:480px){.panel{border-radius:20px}.cake-area{transform:scale(.9);margin-top:0}.title{font-size:2.8rem}}
+@media(max-width:480px){.panel{border-radius:20px}.cake-area{transform:scale(.9);margin-top:0}.title{font-size:2.2rem;line-height:1.2}}
 </style>
 </head>
 <body>
 <div id="stars"></div><div class="lights"></div><div id="confetti"></div>
 <section class="screen active" id="s1"><div class="panel">
 <div class="eyebrow">A little universe, made just for you</div>
-<h1 class="title">Hello,<br><span class="script" id="friendName">Kishor</span></h1>
+<h1 class="title">Hello,<br><span class="script" id="friendName">Deekshith Vishal Velu</span></h1>
 <p>Before this little world opens, there's one tiny question…<br><span class="script">When is your birthday?</span></p>
 <input id="birthInput" type="date" aria-label="Enter your birthday"><br>
 <button onclick="unlock()">Unlock your surprise ✨</button><div class="error" id="dateError"></div>
@@ -66,7 +66,7 @@ footer{font:11px Arial,sans-serif;color:#82798d;margin-top:28px}.small{font-size
 </div></section>
 <section class="screen" id="s6"><div class="panel">
 <div class="eyebrow">Step 06 · From my heart to yours</div><div class="orb">🎉</div>
-<h1 class="title">Happy Birthday,<br><span class="script" id="finalName">Kishor!</span></h1>
+<h1 class="title">Happy Birthday,<br><span class="script" id="finalName">Deekshith Vishal Velu!</span></h1>
 <div class="message" id="finalMessage">May your days be full of laughter, your heart full of peace, and your dreams closer with every new year.</div>
 <div class="signature">With love, always ❤️</div>
 <div class="uploadrow"><label class="filelabel">♫ Add your birthday music<input id="music" type="file" accept="audio/*"></label></div>
@@ -76,11 +76,11 @@ footer{font:11px Arial,sans-serif;color:#82798d;margin-top:28px}.small{font-size
 </div></section>
 <audio id="audio" loop></audio>
 <script>
-const CONFIG={friendName:"Kishor",birthday:"2026-11-21"};
+const CONFIG={friendName:"Deekshith Vishal Velu",birthday:"2004-11-21"};
 document.getElementById("friendName").textContent=CONFIG.friendName;
 document.getElementById("finalName").textContent=CONFIG.friendName+"!";
 function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
-function unlock(){const v=document.getElementById("birthInput").value;const e=document.getElementById("dateError");if(!v){e.textContent="Choose your birthday date first.";return;}if(v!==CONFIG.birthday){e.textContent="Hmm… that's not the secret date. Try again ❤️";return;}e.textContent="";show("s2");}
+function unlock(){const v=document.getElementById("birthInput").value;const e=document.getElementById("dateError");if(!v){e.textContent="Choose your birthday date first.";return;}if(v!==CONFIG.birthday && !v.endsWith("-11-21")){e.textContent="Hmm… that's not the secret date. Try again ❤️";return;}e.textContent="";show("s2");}
 function turnOnLights(){document.body.classList.add("lit");document.getElementById("switch").classList.add("on");document.getElementById("switchText").textContent="There you are! Let the magic begin.";setTimeout(()=>{show("s3");celebrate();},1300);}
 document.getElementById("switch").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();turnOnLights();}});
 function cutCake(){const a=document.getElementById("cakeArea");if(a.classList.contains("cut"))return;a.classList.add("cut");document.getElementById("cakeHint").textContent="You did it! The first slice is yours. Make a wish! ❤️";document.getElementById("cakeNext").style.display="inline-block";celebrate();}
